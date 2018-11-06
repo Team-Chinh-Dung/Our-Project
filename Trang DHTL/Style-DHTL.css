@@ -1,0 +1,182 @@
+﻿body
+{
+    background:#6895bb;
+   
+}
+.header-brand .img{
+    vertical-align:middle;
+    max-width:100%;
+}
+img{
+    height:auto;
+}
+.header {
+    border-top: 10px solid #2b3f8d;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+.header-meta{
+    border-bottom:1px solid #7b90bb;
+    padding-bottom:3px;
+    margin-bottom:14px;
+    margin-top:20px;
+}
+
+.searchbox.header-meta{
+    display:inline-block; 
+}
+dv{
+    margin:0px;
+    padding:0px;
+    font-size:100%;
+    font:inherit;
+    vertical-align:baseline;
+}
+.header-meta {
+    border-bottom: 1px solid #bdccd2;
+    padding-bottom:3px;
+    margin-bottom:14px;
+    margin-top:25px;
+    display:inline-block;
+}
+ul li{
+    list-style:none;
+}
+.header-meta ul a{
+    color:#000000;
+    padding:0 5px;
+}
+a, a:link{
+    text-decoration:none;
+    outline:0 none !important;
+}
+ul{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+}
+.header-meta ul{
+    display:inline-block;
+    vertical-align:top;
+}
+.header-meta ul li{
+    display:inline-block;
+    vertical-align:top;
+}
+li{
+    font-size:16px;
+    line-height:1.25em;
+}
+.header-meta .language{
+    display:inline-block;
+    vertical-align:top;
+}
+.form-search-home .input-text {
+    
+    border:groove;
+    color: #455a63;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    width:250px;
+    vertical-align:top;
+    padding-right:55px;
+    /*position: absolute;*/
+    background: transparent;
+}
+.form-search-home .input-submit {
+    border-radius: 2px;
+    border: 1px solid #adccd8;
+    bottom: -1px;
+    color: #437b8f;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0 14px;
+    /*position: absolute;*/
+    right: -1px;
+    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.55);
+    top: -1px;
+    background: url(../images/front/bgr-submit.png) repeat-x 0 0;
+}
+.home-slider {
+    /*background: url(http://www.tlu.edu.vn/dhtl/images/front/bgr-slider.jpg) repeat 0 0;*/
+}
+.home-slider #mainnav{
+    background-color:rgba(1,29,121,0.75);
+    background-image:none;
+    top:0;
+    width:100%;
+    left:0;
+    z-index:10;
+}
+#mainnav{
+    display:block;
+    transition:all 0,3s ease-out;
+}
+#mainnav ul{
+    position:relative;
+    margin:0;
+}
+ul li{
+    padding:0;
+    list-style:none;
+}
+#mainnav >ul >li{
+    display:block;
+    float:left;
+    padding-right:1px;
+}
+#main ul li{
+    position:relative;
+}
+#mainnav > ul > li.home .fa-home2 {
+    background: url(http://www.tlu.edu.vn/dhtl/images/front/home.png)no-repeat 0 0;
+    display: inline-block;
+    height: 23px;
+    margin-top: 8px;
+    vertical-align: top;
+    width: 24px;
+}
+#mainnav > ul > li.homesp{
+    display:none;
+}
+#mainnav > ul > li > a {
+    position: relative;
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    font-family: 'RobotoCondensedRegular', sans-serif;
+    line-height: 44px;
+}
+#mainnav ul.sub-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 225px;
+    background: #50bbff;
+    z-index:9999;
+    opacity:0;
+    visibility:hidden;
+    transition:all 0.2s ease-out;
+}
+    /*#mainnav ul.sub-menu > li > a {
+        font-family: 'RobotoCondensedRegular', sans-serif;
+        font-size: 16px;
+        text-transform: inherit;
+        letter-spacing: .03em;
+        line-height: 24px;
+        height: auto;
+        color: #fff;
+        display: block;
+        padding: 8px 10px 8px 22px;
+        position: relative;
+        margin: 0 3px;
+        -webkit-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+        border-top: 1px solid #96d6ff;
+    }*/
