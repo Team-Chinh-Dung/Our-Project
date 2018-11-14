@@ -1,0 +1,13 @@
+.header{
+	background-color: gray;
+	text-align: center;
+}
+.sidebar{
+	background-color: pink;
+	float: left;
+	width: 200px;
+	height: 500px;
+}
+.content{
+	
+}

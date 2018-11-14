@@ -1,0 +1,13 @@
+.form{
+	background-color: green;
+	height: 300px;
+	width: 300px;
+	margin: 150px 600px;
+}
+h2{
+	background-color: yellow;
+	text-align: center;
+}
+.input{
+	margin: 50px;
+}
