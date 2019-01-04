@@ -2,7 +2,7 @@
 	require_once('controllers/base_controller.php');
 	require_once 'models/login.php';
 	require_once 'models/register.php';
-	require_once 'config/core.php';
+	//require_once 'config/core.php';
 
 	class AccessController extends BaseController
 	{
@@ -10,13 +10,11 @@
 	  	{
 	    	$this->folder = 'access';
 	  	}
-
 	  	public function login()
 	  	{
 	  		$login = new M_Login();
 	  		$login->f_login();
-	  		$this->render('login');    	    		
-    				
+	  		$this->render('login');    	    		   				
 	  	}
 	  	public function register()
 	  	{
@@ -25,5 +23,4 @@
 	  		$this->render('register');
 	  	}	  	
 	}
-
  ?>

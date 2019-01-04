@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 20, 2018 at 01:10 PM
+-- Generation Time: Jan 04, 2019 at 04:14 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.12
 
@@ -38,13 +38,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
-(3, 'CÃ´ng nghá»‡ thÃ´ng tin'),
-(4, 'Giáº£i trÃ­'),
-(5, 'MÃ¡y tÃ­nh'),
-(6, 'Äiá»‡n thoáº¡i'),
-(7, 'Há»i Ä‘Ã¡p'),
-(8, 'GÃ³p Ã½ xÃ¢y dá»±ng diá»…n Ä‘Ã n'),
-(9, 'Há»i xoÃ¡y Ä‘Ã¡p xoay');
+(1, 'HTML'),
+(2, 'CSS'),
+(3, 'JavaScript'),
+(4, 'JQuery'),
+(5, 'PHP');
 
 -- --------------------------------------------------------
 
@@ -53,83 +51,34 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 --
 
 CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `comment_content` text COLLATE utf8_unicode_ci NOT NULL,
   `comment_created` datetime NOT NULL,
-  `comment_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `comment_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `comment_like` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `post_id`, `comment_content`, `comment_created`, `comment_modified`) VALUES
-(5, 1, 'Thuáº­t toÃ¡n', '2018-12-09 03:27:00', '2018-12-08 19:27:00'),
-(5, 1, 'Há»c Java Ä‘i :))', '2018-12-09 03:28:08', '2018-12-08 19:28:08'),
-(4, 1, 'Há»c Python', '2018-12-09 03:29:21', '2018-12-08 19:29:21'),
-(4, 2, 'Iphone nhÃ©, vá»«a mÆ°á»£t vá»«a Ä‘áº¹p, xem nÃ©t cÄƒng', '2018-12-09 03:41:05', '2018-12-08 19:41:05'),
-(4, 2, 'Samsung ráº» bÃ¨o', '2018-12-09 03:42:57', '2018-12-08 19:42:57'),
-(5, 1, 'like', '2018-12-09 03:49:20', '2018-12-08 19:49:20'),
-(5, 1, 'like', '2018-12-09 03:49:49', '2018-12-08 19:49:49'),
-(5, 2, 'LÃ m Æ¡n', '2018-12-09 04:05:42', '2018-12-08 20:05:42'),
-(5, 2, 'Giáº£i thÃ­ch tui vá»›i', '2018-12-09 04:06:18', '2018-12-08 20:06:18'),
-(5, 1, 'bÃ¬nh thÆ°á»ng', '2018-12-09 04:07:34', '2018-12-08 20:07:34'),
-(5, 1, 'sao em', '2018-12-09 04:08:30', '2018-12-08 20:08:30'),
-(5, 3, 'cÃ²n phim gÃ¬ hay ná»¯a khÃ´ng ace', '2018-12-09 04:10:01', '2018-12-08 20:10:01'),
-(5, 4, 'phÃ¡t triá»ƒn thÃªm Ä‘i', '2018-12-09 14:59:19', '2018-12-09 06:59:19'),
-(5, 1, 'ThÆ°á»ng thÃ´i', '2018-12-09 21:55:31', '2018-12-09 13:55:31'),
-(5, 2, 'lam sao', '2018-12-09 22:01:15', '2018-12-09 14:01:15'),
-(5, 2, 'the nao', '2018-12-09 22:05:20', '2018-12-09 14:05:20'),
-(5, 1, 'cáº¥u trÃºc', '2018-12-10 00:48:22', '2018-12-09 16:48:22'),
-(5, 3, 'Náº¥c thang lÃªn thiÃªn Ä‘Æ°á»ng', '2018-12-10 00:51:20', '2018-12-09 16:51:20'),
-(5, 3, 'Hay quÃ¡', '2018-12-10 00:53:18', '2018-12-09 16:53:18'),
-(5, 3, 'aaaa', '2018-12-10 00:56:42', '2018-12-09 16:56:42'),
-(5, 3, 'link nÃ¨', '2018-12-10 00:57:46', '2018-12-09 16:57:46'),
-(5, 3, 'like', '2018-12-10 00:58:20', '2018-12-09 16:58:20'),
-(5, 2, 'iphone 1 like', '2018-12-10 01:05:31', '2018-12-09 17:05:31'),
-(5, 4, 'mo hinh', '2018-12-10 16:38:27', '2018-12-10 08:38:27'),
-(5, 6, 'nang chu', '2018-12-10 17:15:38', '2018-12-10 09:15:38'),
-(5, 4, 'bÃ¬nh thÆ°á»ng', '2018-12-11 19:03:50', '2018-12-11 11:03:50'),
-(5, 12, 'eqwe', '2018-12-13 23:36:47', '2018-12-13 15:36:47'),
-(5, 2, 'cang ko', '2018-12-13 23:52:39', '2018-12-13 15:52:39'),
-(16, 1, 'cáº¥u trÃºc va giáº£i thuáº­t', '2018-12-14 02:43:43', '2018-12-13 18:43:43'),
-(5, 13, 'xau gi dau\r\n', '2018-12-14 11:57:35', '2018-12-14 03:57:35'),
-(16, 1, 'nÃªn há»c tá»«ng bÆ°á»›c Ä‘á»ƒ náº¯m rÃµ cÃ¡ch hoáº¡t Ä‘á»™ng', '2018-12-14 12:27:47', '2018-12-14 04:27:47'),
-(16, 11, 'jaksdf', '2018-12-14 12:48:02', '2018-12-14 04:48:02'),
-(16, 15, '123', '2018-12-14 12:51:18', '2018-12-14 04:51:18'),
-(16, 15, '12222', '2018-12-14 12:54:11', '2018-12-14 04:54:11'),
-(16, 10, '123w', '2018-12-14 12:56:58', '2018-12-14 04:56:58'),
-(16, 10, '12331', '2018-12-14 12:58:33', '2018-12-14 04:58:33'),
-(16, 10, '12311', '2018-12-14 12:59:09', '2018-12-14 04:59:09'),
-(16, 17, 'ydfygd', '2018-12-14 17:01:03', '2018-12-14 09:01:03'),
-(5, 17, '123', '2018-12-14 17:34:07', '2018-12-14 09:34:07'),
-(5, 17, '12', '2018-12-14 17:35:06', '2018-12-14 09:35:06'),
-(5, 17, '1234123', '2018-12-14 17:35:09', '2018-12-14 09:35:09'),
-(5, 17, '221', '2018-12-14 17:35:15', '2018-12-14 09:35:15'),
-(5, 17, 'anh com chua\r\n', '2018-12-14 17:35:32', '2018-12-14 09:35:32'),
-(5, 18, 'com', '2018-12-14 17:43:57', '2018-12-14 09:43:57'),
-(5, 18, 'asdfad', '2018-12-14 17:44:01', '2018-12-14 09:44:01'),
-(1, 16, '323', '2018-12-14 18:06:10', '2018-12-14 10:06:10'),
-(1, 16, '4123', '2018-12-14 18:06:13', '2018-12-14 10:06:13'),
-(1, 14, '544\r\n', '2018-12-14 18:31:36', '2018-12-14 10:31:36'),
-(5, 20, 'an do nuong', '2018-12-14 21:46:40', '2018-12-14 13:46:40'),
-(5, 21, '23', '2018-12-14 22:51:04', '2018-12-14 14:51:04'),
-(5, 21, '123', '2018-12-15 00:44:27', '2018-12-14 16:44:27'),
-(5, 21, '12', '2018-12-16 00:42:20', '2018-12-15 16:42:20'),
-(5, 21, '1', '2018-12-16 16:49:13', '2018-12-16 08:49:13'),
-(5, 21, 'ddddddddddddddddddddddddddddd', '2018-12-16 18:07:03', '2018-12-16 10:07:03'),
-(5, 21, '123', '2018-12-16 22:26:00', '2018-12-16 14:26:00'),
-(5, 21, 'co go dau', '2018-12-16 22:26:08', '2018-12-16 14:26:08'),
-(5, 24, 'https://eva.vn/tinh-yeu-gioi-tinh-c3.html', '2018-12-16 22:55:12', '2018-12-16 14:55:12'),
-(5, 24, 'asdf', '2018-12-16 23:29:06', '2018-12-16 15:29:06'),
-(5, 1, 'adf', '2018-12-17 00:06:52', '2018-12-16 16:06:52'),
-(5, 25, 'ná»™i dung hay', '2018-12-17 00:17:56', '2018-12-16 16:17:56'),
-(5, 10, 'hjvghg', '2018-12-17 12:47:04', '2018-12-17 04:47:04'),
-(5, 14, 'Java lÃ  gÃ¬', '2018-12-19 00:40:04', '2018-12-18 16:40:04'),
-(5, 14, 'CÃ³ nÃªn há»c', '2018-12-19 00:42:45', '2018-12-18 16:42:45'),
-(5, 14, 'Há»c Ä‘i', '2018-12-19 00:42:55', '2018-12-18 16:42:55'),
-(5, 26, 'TÃ´i khÃ´ng biáº¿t', '2018-12-19 00:44:08', '2018-12-18 16:44:08');
+INSERT INTO `comments` (`comment_id`, `id`, `post_id`, `comment_content`, `comment_created`, `comment_modified`, `comment_like`) VALUES
+(8, 401, 106, 'NhÆ° mÃ¬nh Ä‘Ã£ nÃ³i á»Ÿ trÃªn, HTML sáº½ Ä‘Æ°á»£c khai bÃ¡o báº±ng cÃ¡c pháº§n tá»­ bá»Ÿi cÃ¡c tá»« khÃ³a. Ná»™i dung náº±m bÃªn trong cáº·p tá»« khÃ³a sáº½ lÃ  ná»™i dung báº¡n cáº§n Ä‘á»‹nh dáº¡ng vá»›i HTML. VÃ­ dá»¥ dÆ°á»›i Ä‘Ã¢y lÃ  má»™t Ä‘oáº¡n HTML khai bÃ¡o má»™t Ä‘oáº¡n vÄƒn báº£n.\r\n\r\n01\r\n<p>ÄÃ¢y lÃ  má»™t Ä‘oáº¡n vÄƒn báº£n trong HTML.</p>\r\nNgoÃ i ra, trong cÃ¡c tháº» cÃ²n cÃ³ cÃ¡c thuá»™c tÃ­nh, thuá»™c tÃ­nh sáº½ Ä‘áº·t bÃªn trong tháº» má»Ÿ Ä‘áº§u, má»—i thuá»™c tÃ­nh sáº½ cÃ³ giÃ¡ trá»‹ Ä‘Æ°á»£c Ä‘áº·t trong dáº¥u ngoáº·c kÃ©p vÃ  cÃ¡ch nhau bá»Ÿi dáº¥u báº±ng (=) vá»›i tÃªn thuá»™c tÃ­nh. VÃ­ dá»¥ dÆ°á»›i Ä‘Ã¢y lÃ  má»™t tháº» cÃ³ sá»­ dá»¥ng thuá»™c tÃ­nh-\r\n\r\n01\r\n<form action=\"https://thachpham.com\"> </form>\r\nMá»™t tháº» cÃ³ thá»ƒ sá»­ dá»¥ng nhiá»u thuá»™c tÃ­nh chá»© khÃ´ng pháº£i chá»‰ má»™t thuá»™c tÃ­nh nhÃ©', '2019-01-04 22:02:55', '2019-01-04 14:02:55', 0),
+(9, 402, 106, 'Äiá»u Ä‘Ã³ khÃ´ng cÃ³ nghÄ©a lÃ  chá»‰ sá»­ dá»¥ng HTML Ä‘á»ƒ táº¡o ra má»™t website mÃ  HTML chá»‰ Ä‘Ã³ng má»™t vai trÃ² hÃ¬nh thÃ nh trÃªn website. VÃ­ dá»¥ má»™t website nhÆ° Thachpham.com sáº½ Ä‘Æ°á»£c hÃ¬nh thÃ nh bá»Ÿi:\r\n\r\nHTML â€“ XÃ¢y dá»±ng cáº¥u trÃºc vÃ  Ä‘á»‹nh dáº¡ng cÃ¡c siÃªu vÄƒn báº£n.\r\nCSS â€“ Äá»‹nh dáº¡ng cÃ¡c siÃªu vÄƒn báº£n dáº¡ng thÃ´ táº¡o ra tá»« HTML thÃ nh má»™t bá»‘ cá»¥c website, cÃ³ mÃ u sáº¯c, áº£nh ná»n,â€¦.\r\nJavascript â€“ Táº¡o ra cÃ¡c sá»± kiá»‡n tÆ°Æ¡ng tÃ¡c vá»›i hÃ nh vi cá»§a ngÆ°á»i dÃ¹ng (vÃ­ dá»¥ nháº¥p vÃ o áº£nh trÃªn nÃ³ sáº½ cÃ³ hiá»‡u á»©ng phÃ³ng to).\r\nPHP â€“ NgÃ´n ngá»¯ láº­p trÃ¬nh Ä‘á»ƒ xá»­ lÃ½ vÃ  trao Ä‘á»•i dá»¯ liá»‡u giá»¯a mÃ¡y chá»§ Ä‘áº¿n trÃ¬nh duyá»‡t (vÃ­ dá»¥ nhÆ° cÃ¡c bÃ i viáº¿t sáº½ Ä‘Æ°á»£c lÆ°u trong mÃ¡y chá»§).\r\nMySQL â€“ Há»‡ quáº£n trá»‹ cÆ¡ sá»Ÿ dá»¯ liá»‡u truy váº¥n cÃ³ cáº¥u trÃºc (SQL â€“ vÃ­ dá»¥ nhÆ° cÃ¡c bÃ i viáº¿t sáº½ Ä‘Æ°á»£c lÆ°u láº¡i vá»›i dáº¡ng dá»¯ liá»‡u SQL).\r\nNhÆ°ng á»Ÿ Ä‘Ã¢y, táº¡m thá»i báº¡n chá»‰ cáº§n quan tÃ¢m Ä‘áº¿n HTML mÃ  thÃ´i. Dá»… hiá»ƒu hÆ¡n, báº¡n hÃ£y nghÄ© ráº±ng náº¿u website lÃ  má»™t cÆ¡ thá»ƒ hoÃ n chá»‰nh thÃ¬ HTML chÃ­nh lÃ  bá»™ xÆ°Æ¡ng cá»§a cÆ¡ thá»ƒ Ä‘Ã³, nÃ³ nhÆ° lÃ  má»™t cÃ¡i khung sÆ°á»n váº­y.\r\n\r\nNhÆ° váº­y, dÃ¹ website thuá»™c thá»ƒ loáº¡i nÃ o, giao tiáº¿p vá»›i ngÃ´n ngá»¯ láº­p trÃ¬nh nÃ o Ä‘á»ƒ xá»­ lÃ½ dá»¯ liá»‡u thÃ¬ váº«n pháº£i cáº§n HTML Ä‘á»ƒ hiá»ƒn thá»‹ ná»™i dung ra cho ngÆ°á»i truy cáº­p xem.', '2019-01-04 22:05:08', '2019-01-04 14:05:08', 0),
+(10, 402, 106, 'Website tÄ©nh (static web) â€“ LÃ  má»™t website khÃ´ng giao tiáº¿p vá»›i mÃ¡y chá»§ web Ä‘á»ƒ gá»­i nháº­n dá»¯ liá»‡u mÃ  chá»‰ cÃ³ cÃ¡c dá»¯ liá»‡u Ä‘Æ°á»£c khai bÃ¡o sáºµn báº±ng HTML vÃ  trÃ¬nh duyá»‡t Ä‘á»c.\r\nWebsite Ä‘á»™ng (dynamic web) â€“ LÃ  má»™t website sáº½ giao tiáº¿p vá»›i má»™t mÃ¡y chá»§ Ä‘á»ƒ gá»­i nháº­n dá»¯ liá»‡u, cÃ¡c dá»¯ liá»‡u Ä‘Ã³ sáº½ gá»­i ra ngoÃ i cho ngÆ°á»i dÃ¹ng báº±ng vÄƒn báº£n HTML vÃ  trÃ¬nh duyá»‡t sáº½ hiá»ƒn thá»‹ nÃ³. Äá»ƒ má»™t website cÃ³ thá»ƒ giao tiáº¿p vá»›i mÃ¡y chá»§ web thÃ¬ sáº½ dÃ¹ng má»™t sá»‘ ngÃ´n ngá»¯ láº­p trÃ¬nh dáº¡ng server-side nhÆ° PHP, ASP.NET, Ruby,..Ä‘á»ƒ thá»±c hiá»‡n. VÃ­ dá»¥ nhÆ° má»™t website lÃ m báº±ng WordPress lÃ  website Ä‘á»™ng.', '2019-01-04 22:05:54', '2019-01-04 14:05:54', 0),
+(11, 402, 107, 'href: Äá»‹a chá»‰ cá»§a tÃ i liá»‡u muá»‘n liÃªn káº¿t Ä‘áº¿n, Ä‘Ã¢y cÃ³ thá»ƒ lÃ  má»™t Ä‘Æ°á»ng dáº«n thÆ° má»¥c hoáº·c Ä‘á»‹a chá»‰ website. Náº¿u báº¡n muá»‘n truy cáº­p má»™t tÃ i liá»‡u trÃªn cÃ¹ng má»™t cáº¥p thÆ° má»¥c thÃ¬ chá»‰ cáº§n ghi tÃªn-táº­p-tin.Ä‘á»‹nh dáº¡ng (vÃ­ dá»¥: gioi-thieu.html).', '2019-01-04 22:18:07', '2019-01-04 14:18:07', 0),
+(12, 402, 107, 'title: TiÃªu Ä‘á» cá»§a liÃªn káº¿t, tiÃªu Ä‘á» sáº½ hiá»ƒn thá»‹ nhÆ° má»™t thÃ´ng tin thÃªm khi rÃª chuá»™t vÃ o liÃªn káº¿t.', '2019-01-04 22:18:31', '2019-01-04 14:18:31', 0),
+(13, 402, 108, '<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>', '2019-01-04 22:21:24', '2019-01-04 14:21:24', 0),
+(14, 402, 109, 'CSS Selector Ä‘Ã³ng vai trÃ² ráº¥t quan trá»ng khi cÃ¡c báº¡n code layout cho website, tuy nhiÃªn vá» cÃ¡c loáº¡i selector thÃ¬ hÆ¡i nhiá»u nÃªn trong bÃ i nÃ y tÃ´i chá»‰ trÃ¬nh bÃ y má»™t sá»‘ selector thÃ´ng dá»¥ng vÃ  cÄƒn báº£n nháº¥t Ä‘á»ƒ cÃ¡c báº¡n dá»… theo dÃµi, cÃ¡c váº¥n Ä‘á» nÃ¢ng cao mÃ¬nh sáº½ trÃ¬nh bÃ y á»Ÿ má»™t bÃ i khÃ¡c.', '2019-01-04 22:24:15', '2019-01-04 14:24:15', 0),
+(15, 401, 109, 'Selector náº¿u dá»‹ch tiáº¿ng anh thÃ¬ cÃ³ nghÄ©a lÃ  \"ngÆ°á»i chá»n\" cheeky . Tuy nhiÃªn trong CSS thÃ¬ selector dÃ¹ng Ä‘á»ƒ truy váº¥n Ä‘áº¿n cÃ¡c tháº» HTML. \r\n\r\nNhÆ° báº¡n biáº¿t trong má»™t file HTML thÃ¬ cÃ³ ráº¥t nhiá»u tháº» giá»‘ng nhau vÃ  thÃ´ng thÆ°á»ng chÃºng ta sáº½ Ä‘áº·t cÃ¡c ID, class cho cÃ¡c tháº» Ä‘á»ƒ phÃ¢n biá»‡t, váº­y thÃ¬ trong CSS sáº½ dá»±a vÃ o cÃ¡c ID vÃ  class Ä‘Ã³ Ä‘á»ƒ truy xuáº¥t tá»›i vÃ  cÃ¡ch truy xuáº¥t Ä‘Ã³ ta gá»i lÃ  selector.', '2019-01-04 22:25:01', '2019-01-04 14:25:01', 0),
+(16, 401, 110, '<p>Táº¡i vÃ¬ khi báº¡n sá»­ dá»¥ng float thÃ¬ chiá»u cao cá»§a tháº» cha sáº½ Ä‘Æ°á»£c tÃ­nh lÃ  0px so vá»›i tháº» con float Ä‘Ã³, Ä‘iá»u nÃ y nghÄ©a chiá»u cao cá»§a tháº» cha sáº½ Ä‘Æ°á»£c tÄƒng lÃªn khi ná»™i dung bÃªn trong cá»§a nÃ³ khÃ´ng cÃ³ sá»­ dá»¥ng float.</p>', '2019-01-04 22:29:26', '2019-01-04 14:29:26', 0),
+(17, 402, 110, 'Náº¿u Ä‘á»ƒ Ã½ ká»¹ hÆ¡n chÃºt ná»¯a thÃ¬ báº¡n tháº¥y pháº§n tiáº¿p giao giá»¯a hai pháº§n chÃ­nh lÃ  vÃ¹ng after cá»§a pháº§n border mÃ u Ä‘á», vÃ¬ váº­y ta sáº½ bá»• sung má»™t Ä‘oáº¡n CSS clear:both vÃ o vá»‹ trÃ­ after Ä‘á»ƒ xÃ³a vÃ¹ng cho cáº£ hai bÃªn\r\n<code>.group1:after{\r\n    display: block;\r\n    content: \".\";\r\n}</code>', '2019-01-04 22:30:43', '2019-01-04 14:30:43', 0),
+(18, 402, 111, 'Closure lÃ  má»™t hÃ m Ä‘Æ°á»£c táº¡o ra tá»« bÃªn trong má»™t hÃ m khÃ¡c (hÃ m cha), nÃ³ cÃ³ thá»ƒ sá»­ dá»¥ng cÃ¡c biáº¿n toÃ n cá»¥c, biáº¿n cá»¥c bá»™ cá»§a hÃ m cha vÃ  biáº¿n cá»¥c bá»™ cá»§a chÃ­nh nÃ³. Viá»‡c viáº¿t hÃ m theo kiá»ƒu closure trong má»™t sá»‘ trÆ°á»ng há»£p sáº½ giÃºp code nhÃ¬n sÃ¡ng vÃ  dá»… quáº£n lÃ½ hÆ¡n, linh hoáº¡t hÆ¡n trong viá»‡c xá»­ lÃ½ cÃ¡c chá»©c nÄƒng.', '2019-01-04 22:36:26', '2019-01-04 14:36:26', 0),
+(19, 402, 112, '<code>// Láº¥y danh sÃ¡ch menu\r\nvar menu = document.querySelectorAll(\'#dropdown > li\');\r\n \r\n// Láº·p qua tá»«ng menu Ä‘á»ƒ gÃ¡n sá»± kiá»‡n click\r\nfor (var i = 0; i < menu.length; i++)\r\n{\r\n    menu[i].addEventListener(\"click\", function()\r\n                {   \r\n        // áº¨n háº¿t menu con\r\n        var menuList = document.querySelectorAll(\'#dropdown > li > ul\');\r\n        for (var j = 0; j < menuList.length; j++){\r\n                                menuList[j].style.display = \"none\";\r\n        }\r\n \r\n        // Hiá»ƒn thá»‹ menu hiá»‡n táº¡i\r\n        // Ä‘á»‘i tÆ°á»£ng this chÃ­nh lÃ  tháº» li hiá»‡n táº¡i\r\n        // nÃªn ta sá»­ dá»¥ng máº£ng childrent Ä‘á»ƒ láº¥y danh sÃ¡ch tháº» con\r\n        // mÃ  tháº» ul náº±m á»Ÿ vá»‹ trÃ­ thá»© 2 nÃªn trong máº£ng con nÃ³\r\n        // sáº½ cÃ³ vá»‹ trÃ­ lÃ  1 (máº£ng báº¯t Ä‘áº§u tá»« 0)\r\n        this.children[1].style.display = \"block\";\r\n    }); \r\n}</code>', '2019-01-04 22:38:44', '2019-01-04 14:38:44', 0),
+(20, 402, 113, 'Táº¡m dá»‹ch thÃ´ng bÃ¡o lá»—i nÃ y lÃ : jQuey khÃ´ng Ä‘Æ°á»£c Ä‘á»‹nh nghÄ©a. Lá»—i nÃ y lÃ  Ä‘Æ¡n giáº£n lÃ  báº¡n chÆ°a Ä‘Æ°a thÆ° viá»‡n jQuery vÃ o trÆ°á»›c khi sá»­ dá»¥ng cÃ¡c hÃ m cá»§a jQuery. CÃ³ 2 nguyÃªn nhÃ¢n cÃ³ lÃ  báº¡n chÆ°a chÃ¨n Ä‘oáº¡n mÃ£ chÃ¨n vÃ o hoáº·c cÃ³ chÃ¨n nhÆ°ng gá»i nÃ³ phÃ­a sau hÃ m sá»­ dá»¥ng.', '2019-01-04 22:42:26', '2019-01-04 14:42:26', 0),
+(21, 402, 113, 'Lá»—i sai thÆ° viá»‡n jQuery\r\n<br>\r\nLá»—i xung Ä‘á»™t jQuery', '2019-01-04 22:43:16', '2019-01-04 14:43:16', 0);
 
 -- --------------------------------------------------------
 
@@ -144,34 +93,24 @@ CREATE TABLE `posts` (
   `post_title` text COLLATE utf8_unicode_ci NOT NULL,
   `post_content` text COLLATE utf8_unicode_ci NOT NULL,
   `post_created` datetime NOT NULL,
-  `post_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `post_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `post_image` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `id`, `category_id`, `post_title`, `post_content`, `post_created`, `post_modified`) VALUES
-(1, 5, 3, 'Há»c láº­p trÃ¬nh báº¯t Ä‘áº§u tá»« Ä‘Ã¢u?', 'TÆ° duy hay ngÃ´n ngá»¯', '2018-12-09 03:00:11', '2018-12-08 19:00:11'),
-(2, 5, 6, 'Samsung hay Iphone', 'Chá»n mÃ¡y nÃ o anh em', '2018-12-09 03:05:53', '2018-12-08 19:05:53'),
-(3, 5, 4, 'Phim hÃ n quá»‘c hay', 'NgÃ´i nhÃ  háº¡nh phÃºc', '2018-12-09 04:05:14', '2018-12-08 20:05:14'),
-(4, 5, 8, 'Thiáº¿t káº¿ giao diá»‡n', 'Giao diá»‡n nÃ y hÆ¡i xáº¥u, Ä‘áº­p Ä‘i lÃ m láº¡i nhÃ©', '2018-12-09 14:08:07', '2018-12-09 06:08:07'),
-(6, 5, 7, 'Thoi tiet hom nay the nao', 'mua', '2018-12-10 17:15:22', '2018-12-10 09:15:22'),
-(10, 5, 3, '123', '123', '2018-12-13 22:35:07', '2018-12-13 14:35:07'),
-(11, 5, 7, 'kinh', 'hhhh', '2018-12-13 22:40:28', '2018-12-13 14:40:28'),
-(12, 5, 6, 'Äiá»‡n thoáº¡i', 'Äiá»‡n thoáº¡i nÃ o ráº» mÃ  ngon hiá»‡n nay', '2018-12-13 23:35:35', '2018-12-13 15:35:35'),
-(13, 16, 8, 'giao dien', 'khung con xau', '2018-12-14 01:58:03', '2018-12-13 17:58:03'),
-(14, 16, 3, 'hom nay hoc gi', 'java', '2018-12-14 03:47:16', '2018-12-13 19:47:16'),
-(15, 16, 7, 'bai gi', 'vo oi', '2018-12-14 12:48:59', '2018-12-14 04:48:59'),
-(16, 16, 4, 'sajdhfkjahf', 'askjhfjahfaskkdkasd', '2018-12-14 17:00:41', '2018-12-14 09:00:41'),
-(17, 16, 8, 'fsdgsg', 'dsfsdgdfhdf', '2018-12-14 17:00:55', '2018-12-14 09:00:55'),
-(18, 5, 8, 'toi nay an gi', 'com hay pho', '2018-12-14 17:36:10', '2018-12-14 09:36:10'),
-(20, 5, 7, 'hom nay', 'an gi', '2018-12-14 21:46:28', '2018-12-14 13:46:28'),
-(21, 5, 3, 'Java', '111', '2018-12-14 22:34:15', '2018-12-14 14:34:15'),
-(24, 5, 3, 'tinh yeu', 'tinh yeu la gi', '2018-12-16 22:32:32', '2018-12-16 14:32:32'),
-(25, 5, 4, 'TrÃ¡i Ä‘áº¥t trÃ²n', 'NgÃ y dÃ i xa xoi gáº·p láº¡i nhau rÃ²i thÃ¬ cá»© vui thÃ´i, báº¡n tÃ´i nháº¯c chuyá»‡n xÆ°a, báº¡n tÃ´i Æ¡i Ä‘á»«ng nháº¯c chuyá»‡n xÆ°a, chuyá»‡n xÆ°a tÃ´i Ä‘Ã£ quÃªn rá»“i, quÃªn Ä‘i Ä‘á»ƒ nhá»› chuyá»‡n hÃ´m nay', '2018-12-17 00:13:24', '2018-12-16 16:13:24'),
-(26, 5, 5, 'Laptop', 'Laptop nÃ o máº¡nh nháº¥t hiá»‡n nay?', '2018-12-19 00:43:49', '2018-12-18 16:43:49'),
-(27, 5, 6, 'Dien thoai tot nhat hien nay', 'Samsung Galaxy', '2018-12-19 19:37:09', '2018-12-19 11:37:09');
+INSERT INTO `posts` (`post_id`, `id`, `category_id`, `post_title`, `post_content`, `post_created`, `post_modified`, `post_image`) VALUES
+(106, 401, 1, 'HTML lÃ  gÃ¬?', 'HTML lÃ  chá»¯ viáº¿t táº¯t cá»§a cá»¥m tá»« HyperText Markup Language((Xem thÃªm táº¡i http://vi.wikipedia.org/wiki/HTML)) (dá»‹ch lÃ  NgÃ´n ngá»¯ Ä‘Ã¡nh dáº¥u siÃªu vÄƒn báº£n) Ä‘Æ°á»£c sá»­ dá»¥ng Ä‘á»ƒ táº¡o má»™t trang web, trÃªn má»™t website cÃ³ thá»ƒ sáº½ chá»©a nhiá»u trang vÃ  má»—i trang Ä‘Æ°á»£c quy ra lÃ  má»™t tÃ i liá»‡u HTML (thi thoáº£ng mÃ¬nh sáº½ ghi lÃ  má»™t táº­p tin HTML). Cha Ä‘áº» cá»§a HTML lÃ  Tim Berners-Lee, cÅ©ng lÃ  ngÆ°á»i khai sinh ra World Wide Web vÃ  chá»§ tá»‹ch cá»§a World Wide Web Consortium (W3C â€“ tá»• chá»©c thiáº¿t láº­p ra cÃ¡c chuáº©n trÃªn mÃ´i trÆ°á»ng Internet)', '2019-01-04 22:01:58', '2019-01-04 14:01:58', 'libs/uploads/html.png'),
+(107, 402, 1, 'THáºº Táº O LIÃŠN Káº¾T VÃ€ LIÃŠN Káº¾T NEO NHÆ¯ NÃ€O?', 'Má»™t trong nhá»¯ng nÃ©t Ä‘áº·c trÆ°ng cá»§a siÃªu vÄƒn báº£n lÃ  cÃ³ nhá»¯ng Ä‘Æ°á»ng liÃªn káº¿t (link) tá»›i má»™t tÃ i liá»‡u khÃ¡c thÃ´ng qua Ä‘á»‹a Ä‘Æ°á»ng dáº«n Ä‘áº¿n tÃ i liá»‡u hoáº·c Ä‘á»‹a chá»‰ website. Äá»ƒ táº¡o ra cÃ¡c Ä‘Æ°á»ng liÃªn káº¿t trong HTML ta sáº½ sá»­ dá»¥ng cáº·p tháº»  ', '2019-01-04 22:17:16', '2019-01-04 14:17:16', 'libs/uploads/atag.jpg'),
+(108, 402, 1, 'Tháº» h1 nhÆ° nÃ o?', 'CÃ³ máº¥y loáº¡i tháº» heading', '2019-01-04 22:20:50', '2019-01-04 14:20:50', 'libs/uploads/h1.png'),
+(109, 402, 2, 'selector lÃ  gÃ¬?', 'phÃ¢n biá»‡t chÃºng vá»›i tháº» div trong css', '2019-01-04 22:23:57', '2019-01-04 14:23:57', 'libs/uploads/css1.png'),
+(110, 401, 2, 'Ká»¹ thuáº­t ClearFix lÃ  gÃ¬?', 'Ká»¹ thuáº­t ClearFix trong CSS lÃ  cÃ¡ch sá»­ dá»¥ng cÃ¡c thuá»™c tÃ­nh CSS Ä‘á»ƒ Ä‘iá»u chá»‰nh vÃ¹ng khÃ´ng gian cá»§a tháº» cha so vá»›i cÃ¡c tháº» con cÃ³ sá»­ dá»¥ng float', '2019-01-04 22:28:45', '2019-01-04 14:28:45', 'libs/uploads/css2.jpg'),
+(111, 402, 3, 'Closure lÃ  gÃ¬? Closure function trong Javascript', 'Closure lÃ  má»™t khÃ¡i niá»‡m khÃ´ng pháº£i ai cÅ©ng biáº¿t vÃ  thá»±c sá»± hiá»ƒu vá» nÃ³, Ä‘Ã¢y cÃ³ thá»ƒ coi lÃ  má»™t cÃ¡ch Ä‘á»‹nh nghÄ©a hÃ m nÃ¢ng cao giÃºp code nhÃ¬n trong sÃ¡ng, cÃ¡ch sá»­ dá»¥ng linh hoáº¡t hÆ¡n, vÃ¬ váº­y náº¿u báº¡n muá»‘n há»c Javascript nÃ¢ng cao hoáº·c há»c cÃ¡c Javascript Framework khÃ¡c thÃ¬ báº¯t buá»™c pháº£i hiá»ƒu vá» Closure', '2019-01-04 22:35:48', '2019-01-04 14:35:48', 'libs/uploads/js111.png'),
+(112, 402, 3, 'Code Javascript hiá»‡u á»©ng Dropdown menu', 'Help me!!!', '2019-01-04 22:38:18', '2019-01-04 14:38:18', 'libs/uploads/'),
+(113, 402, 4, 'Lá»—i JQuery', 'Giáº£i quyáº¿t em phÃ¡t', '2019-01-04 22:41:59', '2019-01-04 14:41:59', 'libs/uploads/jquery-is-not-defined.jpg'),
+(114, 402, 5, 'Lá»—i láº¥y dá»¯ liá»‡u tá»« mysql - php', 'Má»i ngÆ°á»i nhÃ¬n vÃ o giÃºp mÃ¬nh Ä‘Ã¢y lÃ  lá»—i gÃ¬ tháº¿ áº¡ ? Xin cáº£m Æ¡n', '2019-01-04 22:45:41', '2019-01-04 14:45:41', 'libs/uploads/loiphp.png');
 
 -- --------------------------------------------------------
 
@@ -199,13 +138,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `contact_number`, `address`, `password`, `access_level`, `access_code`, `status`, `created`, `modified`) VALUES
-(1, 'Admin', 'Admin', 'tanthuyhoangkd169@gmail.com', '0158885', 'Nam Äá»‹nh', '$2y$10$ACTaDEzDcWcn.D8VrLO2dORFiQFkycsKvk/BTGV1gNqjQrqGYHaHi', 'Admin', 'IfJmLeeHTW15lXVy1ThygItPJ0crpJOR', 1, '2018-12-05 17:22:44', '2018-12-08 18:18:19'),
-(2, 'Dung', 'Le Dinh', 'mike@example.com', '0999999999', 'Blk. 24 A, Lot 6, Ph. 3, Peace Village', '$2y$10$AUBptrm9sQF696zr8Hv31On3x4wqnTihdCLocZmGLbiDvyLpyokL.', 'Admin', '', 1, '0000-00-00 00:00:00', '2018-12-08 18:21:44'),
-(4, 'Quy', 'Pham Van', 'darwin@example.com', '9331868359', 'Nam Định', '$2y$10$tLq9lTKDUt7EyTFhxL0QHuen/BgO9YQzFYTUyH50kJXLJ.ISO3HAO', 'Customer', 'ILXFBdMAbHVrJswNDnm231cziO8FZomn', 1, '2014-10-29 17:31:09', '2018-12-08 18:21:33'),
-(5, 'Tham', 'Pham Thi Hong', 'aovang5wqe@gmail.com', '256998258', 'Nam Äá»‹nh', '$2y$10$HP3e44C17iXh0Nm6jKKScej8ldOrOyNXsr4R0PtJfG7jQTbp0bAdm', 'Customer', 'ZzyNTiEw6LPmLVR7xO7WQoLTL8ovpaWk', 1, '2018-12-09 02:13:13', '2018-12-08 18:14:03'),
-(16, 'Mickey', 'Mouse', 'chinhpham1609@gmail.com', '0158885', '2018_2019', '$2y$10$np4dOtnSiJE9/qDsjUXxxO6mhMFWfW9/Yvrk7uV7EwMTr66gOkHwi', 'Customer', 'oF7Gw6qR5dSzIo9aBrbyRoifT9sbh06o', 1, '2018-12-14 01:52:04', '2018-12-13 17:56:18'),
-(20, 'Giang', 'Nguyễn Đức', 'ducgiang@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Customer', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, '2016-05-26 01:25:59', '2016-05-25 10:25:59'),
-(21, 'Duong', 'Lang Dai', 'langdaiduong988@gmail.com', '45498789', 'VÄ©nh PhÃºc', '$2y$10$4uFJKIobnT6.r7zu05gwGewCgksv/TIvLyo5tRaGEvYvHfURPZGqa', 'Customer', '2xJiGeuOIuyjPLl98GZRsvMstNyMfRqs', 0, '2018-12-19 00:01:33', '2018-12-18 16:01:33');
+(5, 'DÅ©ng', 'LÃª CÃ´ng', 'chinhpham1609@gmail.com', '0158885', '123', '$2y$10$HP3e44C17iXh0Nm6jKKScej8ldOrOyNXsr4R0PtJfG7jQTbp0bAdm', 'Customer', 'ZzyNTiEw6LPmLVR7xO7WQoLTL8ovpaWk', 1, '2018-12-09 02:13:13', '2019-01-03 17:16:33'),
+(16, 'VÃ¢n Anh', 'Nguyá»…n Thá»‹', 'mickey@gmail.com', '01588851000', '123111', '$2y$10$np4dOtnSiJE9/qDsjUXxxO6mhMFWfW9/Yvrk7uV7EwMTr66gOkHwi', 'Customer', 'oF7Gw6qR5dSzIo9aBrbyRoifT9sbh06o', 1, '2018-12-14 01:52:04', '2019-01-03 17:17:17'),
+(40, 'Tháº¯m', 'Pháº¡m Thá»‹ Há»“ng', 'darwin@example.com', '9331868359', 'Blk 24 ', '$2y$10$tLq9lTKDUt7EyTFhxL0QHuen/BgO9YQzFYTUyH50kJXLJ.ISO3HAO', 'Customer', 'ILXFBdMAbHVrJswNDnm231cziO8FZomn', 1, '2014-10-29 17:31:09', '2019-01-04 12:39:24'),
+(66, 'Quy', 'Pháº¡m VÄƒn', 'VanQuy@example.com', '0999666', 'Blk. 24 A, Lot 6,', '$2y$10$AUBptrm9sQF696zr8Hv31On3x4wqnTihdCLocZmGLbiDvyLpyokL.', 'Customer', '', 1, '0000-00-00 00:00:00', '2019-01-03 15:28:36'),
+(92, 'ChÃ­nh', 'Pháº¡m CÃ´ng', 'tanthuyhoangkd169@gmail.com', '0973676444', 'XuÃ¢n TrÆ°á»ng - Nam Äá»‹nh', '$2y$10$1OPNbZEOf./ZZA.zyJv.x.oj5NG4OYH47t2E4vBHnqSFtKyX9c3hG', 'Admin', 'dupjFj1pXl9b95bi2aGMXag3XRJX6TKU', 1, '2018-12-23 17:25:38', '2019-01-03 15:21:41'),
+(400, 'Lan Anh', 'BÃ¹i Thá»‹', 'darwin@example.com', '9331868359', 'Nam Äá»‹nh', '$2y$10$tLq9lTKDUt7EyTFhxL0QHuen/BgO9YQzFYTUyH50kJXLJ.ISO3HAO', 'Customer', 'ILXFBdMAbHVrJswNDnm231cziO8FZomn', 1, '2014-10-29 17:31:09', '2019-01-03 17:40:25'),
+(401, 'Tiáº¿n', 'Nguyá»…n VÄƒn', 'aovang5wqe@gmail.com', '258633148', 'ThÃ¡i BÃ¬nh', '$2y$10$s7kdmYU2/W9KgxcRUQerBuU8UHLmoQZjhzp3hAbH2UVyY6CdR7Mve', 'Customer', 'pa1ZL6zOwMfCodPxTz0zX5e9uYsgrL1V', 1, '2019-01-04 01:23:01', '2019-01-03 17:23:53'),
+(402, 'DÅ©ng', 'LÃª ÄÃ¬nh', 'chinhpc62@wru.vn', '4586693325', 'HÃ  Ná»™i', '$2y$10$CFXw2I7KwXCH7wt4r8A/5.4l/ohim/t19cWXfnLn5JRbPxT9AL8li', 'Customer', '233VZyxS20N2SPCKaZG52neIZjJxT93K', 1, '2019-01-04 01:29:22', '2019-01-04 12:39:16');
 
 --
 -- Indexes for dumped tables
@@ -221,6 +161,7 @@ ALTER TABLE `categories`
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`),
   ADD KEY `id` (`id`),
   ADD KEY `post_id` (`post_id`);
 
@@ -246,19 +187,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=403;
 
 --
 -- Constraints for dumped tables

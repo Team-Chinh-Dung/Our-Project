@@ -1,11 +1,8 @@
 <?php
-// 'user' object
-class User{
- 
+class User{ 
     // database connection and table name
     private $conn;
-    private $table_name = "users";
- 
+    private $table_name = "users"; 
     // object properties
     public $id;
     public $firstname;
@@ -113,8 +110,7 @@ class User{
      
         // hash the password before saving to database
         $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
-        $stmt->bindParam(':password', $password_hash);
-     
+        $stmt->bindParam(':password', $password_hash);     
         $stmt->bindParam(':access_level', $this->access_level);
         $stmt->bindParam(':access_code', $this->access_code);
         $stmt->bindParam(':status', $this->status);
@@ -126,20 +122,66 @@ class User{
         }else{
             $this->showError($stmt);
             return false;
-        }
- 
+        } 
     }
+    public function update($id){
+        $query = "UPDATE ".$this->table_name."
+        SET
+            firstname = :firstname,
+            lastname = :lastname,
+            contact_number = :contact_number,
+            email =:email,
+            address = :address,
+            access_level = :access_level WHERE id = $id";
 
+        $stmt = $this->conn->prepare($query);
+        $this->firstname=htmlspecialchars(strip_tags($this->firstname));
+        $this->lastname=htmlspecialchars(strip_tags($this->lastname));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->contact_number=htmlspecialchars(strip_tags($this->contact_number));
+        $this->address=htmlspecialchars(strip_tags($this->address));        
+        $this->access_level=htmlspecialchars(strip_tags($this->access_level));
+
+        $stmt->bindParam(':firstname', $this->firstname);
+        $stmt->bindParam(':lastname', $this->lastname);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':contact_number', $this->contact_number);
+        $stmt->bindParam(':address', $this->address);
+        $stmt->bindParam(':access_level', $this->access_level);
+        if($stmt->execute()){
+            return true;
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    }
+    public function delete($id){
+        $query = "DELETE FROM ".$this->table_name." WHERE id = $id";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    }
+    public function filters($key){
+        $query = "SELECT firstname FROM users WHERE firstname like '%$key%'";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }else{
+            $this->showError($stmt);
+            return false;
+        }
+    }
     public function showError($stmt){
         echo "<pre>";
             print_r($stmt->errorInfo());
         echo "</pre>";
     }
-
-
     // read all user records
-    function readAll($from_record_num, $records_per_page){
-     
+    function readAll($from_record_num, $records_per_page){     
         // query to read all user records, with limit clause for pagination
         $query = "SELECT
                     id,
@@ -166,19 +208,54 @@ class User{
         // return values
         return $stmt;
     }
+    public static function countUsers(){
+        $database = new Database();
+        $db = $database->getConnection();
+        $query = "SELECT id FROM users";     
+        // prepare query statement
+        $stmt = $db->prepare($query);     
+        // execute query
+        $stmt->execute();     
+        // get number of rows
+        $countUsers = $stmt->rowCount();     
+        // return row count
+        return $countUsers;
+
+        // used for paging users
+    }
+    public function countAll(){
+        // query to select all user records
+        $query = "SELECT id FROM users";     
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);     
+        // execute query
+        $stmt->execute();     
+        // get number of rows
+        $num = $stmt->rowCount();     
+        // return row count
+        return $num;
+    }
+
     public static function readUsers()
     {
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $records_per_page = 5;
+        $from_record_num = ($records_per_page * $page) - $records_per_page;
+        
         $database = new Database();
         $db = $database->getConnection();
         $list = [];
-        $query = "SELECT * FROM users ORDER BY firstname ASC";
+        $query = "SELECT * FROM users ORDER BY firstname ASC LIMIT ?,?";
         $stmt = $db->prepare( $query );
+        $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
+        $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
         $stmt->execute();
         foreach ($stmt->fetchAll() as $users){
-            $array = array($users['firstname'], $users['lastname'], $users['email'], $users['contact_number'], $users['address'],$users['access_level'], $users['created']);
+            $array = array($users['id'], $users['firstname'], $users['lastname'], $users['email'], $users['contact_number'], $users['address'],$users['access_level'], $users['created']);
             $list[] = $array;
         }
         return $list;
+
     }
     public static function readDetail($id){
         $database = new Database();
@@ -188,31 +265,10 @@ class User{
         $stmt = $db->prepare( $query );
         $stmt->execute(array('id' => $id));
         foreach ($stmt->fetchAll() as $detail){
-            $array = array($detail['firstname'], $detail['lastname'], $detail['email'], $detail['contact_number']);
+            $array = array($detail['firstname'], $detail['lastname'], $detail['email'], $detail['contact_number'], $detail['access_level']);
             $list[] = $array;
         }
         return $list;
-    }
-
-    
-
-    // used for paging users
-    public function countAll(){
-     
-        // query to select all user records
-        $query = "SELECT id FROM " . $this->table_name . "";
-     
-        // prepare query statement
-        $stmt = $this->conn->prepare($query);
-     
-        // execute query
-        $stmt->execute();
-     
-        // get number of rows
-        $num = $stmt->rowCount();
-     
-        // return row count
-        return $num;
     }
 
     // used in email verification feature

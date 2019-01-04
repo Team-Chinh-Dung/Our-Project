@@ -3,16 +3,12 @@ require_once 'config/database.php';
 include_once "models/user.php";
 require_once 'libs/php/utils.php';
 require_once 'config/core.php';
-/**
- * 
- */
 class M_Register
 {
 	
 	public function f_register()
-	{	
-		
-		    // if form was posted
+	{			
+		// if form was posted
 		if($_POST){
 		 
 		    // get database connection

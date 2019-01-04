@@ -1,9 +1,10 @@
 <?php
+echo "<div class='container'>";
 echo "<ul class=\"pagination margin-zero\">";    
     // button for first page
     if($page>1){
         echo "<li><a href='{$page_url}' title='Go to the first page.'>";
-            echo "First Page";
+            echo "Trang đầu";
         echo "</a></li>";
     }     
     // calculate total number of pages
@@ -35,9 +36,10 @@ echo "<ul class=\"pagination margin-zero\">";
     // button for last page
     if($page<$total_pages){
         echo "<li><a href='" .$page_url . "page={$total_pages}' title='Last page is {$total_pages}.'>";
-            echo "Last Page";
+            echo "Trang cuối";
         echo "</a></li>";
     }
  
 echo "</ul>";
+echo "</div>";
 ?>

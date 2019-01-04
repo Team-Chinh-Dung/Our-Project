@@ -1,10 +1,7 @@
 <?php 
 	require_once('controllers/base_controller.php');
 	require_once '../models/user.php';
-	require_once '../config/core.php';
-	/**
-	 * 
-	 */
+	require_once '../models/paging_objects.php';
 	class UsersController extends BaseController
 	{
 		
@@ -19,8 +16,11 @@
 		}
 		public function users_detail(){		
 			$detail = User::readUsers();
-			$data = array('detail' => $detail);
+			$data = array('detail' => $detail);			
 			$this->render('users_detail', $data);
+
+			$paging = new Paging();
+			$paging->Userspaging();
 		}
 	}
  ?>

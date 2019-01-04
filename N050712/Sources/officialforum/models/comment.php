@@ -1,50 +1,52 @@
 <?php
-require_once 'config/database.php';
-
-/**
- * 
- */
 class Comment
 {
 	private $conn;
 	private $table_name = "comments";
-
-	
+	public $comment_id;	
 	public $id;
 	public $post_id;
 	public $comment_content;
 	public $comment_created;
 	public $comment_modified;
-	
-	function __construct($id, $post_id, $comment_content, $comment_created,$comment_modified)
-	{
-		$this->id = $id;
-		$this->post_id = $post_id;
-		$this->comment_content = $comment_content;
-		$this->comment_created = $comment_created;
-		$this->comment_modified = $comment_modified;
+	public $comment_like;
+
+	function __construct($db){
+		$this->conn = $db;
 	}
 
-	public function create()
-	{
-		$database = new Database();
-		$db = $database->getConnection();
-
+	public function create(){
 		$this->comment_created=date('Y-m-d H:i:s');
+		$this->comment_like = 0;
 		$query = "INSERT INTO ".$this->table_name."
 		SET
 		id = :id,
 		post_id = :post_id,
 		comment_content = :comment_content,
-		comment_created = :comment_created";
+		comment_created = :comment_created,
+		comment_like = :comment_like";
 
-		$stmt = $db->prepare($query);
+		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':id', $this->id);
 		$stmt->bindParam(':post_id', $this->post_id);
 		$stmt->bindParam(':comment_content', $this->comment_content);
 		$stmt->bindParam(':comment_created', $this->comment_created);
+		$stmt->bindParam(':comment_like', $this->comment_like);
 
+		if ($stmt->execute()) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function updateLike($comment_content){
+		$query = "UPDATE ".$this->table_name."
+		SET
+		comment_like = :comment_like++ WHERE comment_content = $comment_content";
+		$stmt = $this->conn->prepare($query);
+		$stmt->bindParam(':comment_like', $this->comment_like);
 		if ($stmt->execute()) {
 			return true;
 		}else{
@@ -58,19 +60,29 @@ class Comment
 	    echo "</pre>";
    	}
 
-   	public static function readComment($id)
-   	{
+   	public static function countComments(){
+    	$database = new Database();
+		$db = $database->getConnection();
+		$query = "SELECT comment_id FROM comments";
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+		$countComments = $stmt->rowCount();
+		return $countComments;
+    }
+
+   	public static function readComment($id){
    		$database = new Database();
 		$db = $database->getConnection();
 		$list = [];
-   		$query = "SELECT * FROM comments WHERE post_id = :id ORDER BY comment_created DESC";
+   		$query = "SELECT * FROM comments WHERE post_id = :id ORDER BY comment_like DESC";
    		$stmt = $db->prepare($query);
    		$stmt->execute(array('id' => $id));
    		foreach ($stmt->fetchAll() as $i) {
-   			$list[] = new Comment($i['id'], $i['post_id'], $i['comment_content'], $i['comment_created'], $i['comment_modified']);
+   			$list[] = array($i['comment_id'],$i['id'], $i['post_id'], $i['comment_content'], $i['comment_created'], $i['comment_modified'], $i['comment_like']);
    		}
    		return $list;
    	}
+   	
    	public static function readUser($id){
     	$database = new Database();
 		$db = $database->getConnection();
@@ -85,5 +97,4 @@ class Comment
 		return $list;
     }  		
 }
-
  ?>

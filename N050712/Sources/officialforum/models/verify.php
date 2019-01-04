@@ -22,8 +22,7 @@ if(!$user->accessCodeExists()){
 }
  
 // redirect to login
-else{
-     
+else{    
     // update status
     $user->status=1;
     $user->updateStatusByAccessCode();

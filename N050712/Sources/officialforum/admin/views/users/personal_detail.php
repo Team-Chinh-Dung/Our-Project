@@ -1,6 +1,6 @@
 <?php 
 	$page_title = 'Thông tin cá nhân';
- foreach ($detail as $detail) {
+foreach ($detail as $detail) {
 ?>	
 	<div class="col-sm-3">
 		

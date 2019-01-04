@@ -2,3 +2,8 @@
 	background-color: whitesmoke;
 	border-radius: 10px;
 }
+#home_content{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 117px;
+}

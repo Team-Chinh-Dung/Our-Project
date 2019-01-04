@@ -1,5 +1,5 @@
 <?php 
-	require_once('config/database.php');
+	require_once 'config/database.php';
 	require_once 'config/core.php';
 
 	if (isset($_GET['controller'])) {
@@ -10,8 +10,8 @@
 	    	$action = 'index';
 	  	}
 	} else {
-	 	$controller = 'pages';
-	  	$action = 'home';
+	 	$controller = 'forum';
+	  	$action = 'forum';
 	}
 	require_once('routes.php');
  ?>

@@ -1,10 +1,4 @@
 <?php 
-	require_once 'config/database.php';
-	include_once "models/user.php";
-	include_once 'config/core.php';
-	/**
-	 * 
-	 */
 	class M_Login
 	{	
 
@@ -51,7 +45,7 @@
 				 
 				    // else, redirect only to 'Customer' section
 				    else{
-				        header("Location: {$home_url}controllers/index.php?action=login_success");
+				        header("Location: {$home_url}index.php?action=forum&action=forum");
 				    }
 				}
 				 
@@ -76,11 +70,12 @@
              
             // tell the user if access denied
             if($access_denied){
-                echo "<div class='col-sm-6 col-md-4 col-md-offset-4'>
-						<div class='alert alert-danger margin-top-40' role='alert'>
-                    		Email hoặc mật khẩu của bạn đã bị sai
-                    	</div>
-                	</div>";
+     //        	echo "<div class='col-sm-6 col-md-4 col-md-offset-4'>
+					// 	<div class='alert alert-danger margin-top-10' role='alert'>
+     //                		Email hoặc mật khẩu của bạn đã bị sai
+     //                	</div>
+					// </div>";
+                echo " <script> alert('Email hoặc mật khẩu của bạn đã bị sai! Vui lòng thử lại.') </script>";
             }
 		}
 	}
